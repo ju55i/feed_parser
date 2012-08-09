@@ -43,6 +43,12 @@ describe FeedParser do
       fp.parse
     end
 
+    it "should handle escape basic auth credentials correct" do
+      FeedParser.any_instance.should_receive(:open).with("http://blog.example.com/feed/", http_connection_options.merge(:http_basic_authentication => ["user@domain", "lol@fun"])).and_return(feed_xml)
+      fp = FeedParser.new({:url => "http://user%40domain:lol%40fun@blog.example.com/feed/"}.merge(http_connection_options))
+      fp.parse
+    end
+
     it "should follow redirect based on the exception message (even if OpenURI don't want to do it)" do
       FeedParser.any_instance.should_receive(:open).with("http://example.com/feed", http_connection_options).and_raise(RuntimeError.new("redirection forbidden: http://example.com/feed -> https://example.com/feed"))
       FeedParser.any_instance.should_receive(:open).with("https://example.com/feed", http_connection_options).and_return(feed_xml)

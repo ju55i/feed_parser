@@ -37,9 +37,8 @@ class FeedParser
 
   def open_or_follow_redirect(feed_url)
     uri = URI.parse(feed_url)
-
     if uri.userinfo
-      @http_options[:http_basic_authentication] = [uri.user, uri.password].compact
+      @http_options[:http_basic_authentication] = [CGI.unescape(uri.user || ""), (CGI.unescape(uri.password) rescue nil) ].compact
       uri.userinfo = uri.user = uri.password = nil
     end
 
