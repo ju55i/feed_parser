@@ -1,8 +1,7 @@
 # feed_parser.gemspec
 # -*- encoding: utf-8 -*-
 
-$:.push File.expand_path("../lib", __FILE__)
-require 'feed_parser'
+require File.expand_path('../lib/feed_parser/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'feed_parser'
