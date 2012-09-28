@@ -32,5 +32,19 @@ class FeedParser
         :item_content => "content",
       }
     end
+    def self.rdf
+      {
+        :title => "/rdf:RDF/channel/title",
+        :url => "/rdf:RDF/channel/@rdf:about",
+        :item => "/rdf:RDF/item",
+        :item_guid => "",
+        :item_link => "link",
+        :item_title => "title",
+        :item_categories => "dc:subject",
+        :item_author => "dc:creator",
+        :item_description => "description",
+        :item_content => "content:encoded",
+      }
+    end
   end
 end
